@@ -1,0 +1,197 @@
+* {
+  box-sizing: border-box;
+  font-family: "Comic Sans MS", "Segoe UI", sans-serif;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffd6e8, #ffeaea);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 22px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 1.2s ease;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+textarea {
+  height: 80px;
+  resize: none;
+}
+
+button {
+  margin-top: 12px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  background: #ff5c8a;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.06);
+}
+
+.accept {
+  background: #ff5c8a;
+}
+.shy {
+  background: #ff85a1;
+}
+
+.hidden {
+  display: none;
+}
+
+.emoji {
+  font-size: 2rem;
+  animation: wiggle 1.2s infinite;
+}
+
+.heart {
+  font-size: 1.8rem;
+  animation: heartbeat 1.2s infinite;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.share-box {
+  margin-top: 20px;
+}
+
+.share-box input {
+  width: 100%;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* hati */
+.heart-bg {
+  position: absolute;
+  bottom: -20px;
+  color: rgba(255, 92, 138, 0.7);
+  font-size: 18px;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* pastikan card di atas background */
+.card {
+  position: relative;
+  z-index: 2;
+}
+
+.card {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  padding: 25px 25px 35px;
+  border-radius: 22px;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+p {
+  line-height: 1.7;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+/* Hilangkan scrollbar di semua browser */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge lama */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pernyataan Cinta 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <audio id="bgMusic" src="Music_Romantic.mp3" loop></audio>
+
+    <div class="hearts-container"></div>
+
+    <!-- FORM PEMBUAT -->
+    <div class="card form-card">
+      <h1>💌 Buat Pernyataan Cinta</h1>
+
+      <input type="text" id="nama" placeholder="Nama dia..." />
+      <textarea id="pesan1" placeholder="Kalimat pembuka..."></textarea>
+      <textarea id="pesan2" placeholder="Isi perasaanmu..."></textarea>
+
+      <button onclick="buatPernyataan()">Buat & Generate Link 💖</button>
+    </div>
+
+    <!-- HASIL / MODE BACA -->
+    <div class="card result-card hidden">
+      <div class="emoji">🐻💗</div>
+      <h1>Hai <span id="hasilNama"></span>!</h1>
+
+      <p id="hasilPesan1"></p>
+      <p id="hasilPesan2"></p>
+
+      <div class="heart">❤️❤️❤️</div>
+
+      <div class="button-group">
+        <button class="accept" onclick="terimaCinta()">💖 Terima</button>
+        <button class="shy" onclick="terimaCinta()">🙈 Malu tapi Iya</button>
+      </div>
+
+      <div id="response" class="hidden">
+        <p>Hehe… hatiku senang banget sekarang 🥰</p>
+      </div>
+
+      <div class="share-box">
+        <input type="text" id="shareLink" readonly />
+        <button onclick="copyLink()">📎 Salin Link</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
