@@ -1,74 +1,99 @@
-const params = new URLSearchParams(window.location.search);
+const music = document.getElementById("bgMusic");
+const heartsContainer = document.querySelector(".hearts-container");
 
-// MODE BACA SAJA (PENERIMA)
-if (params.has("nama")) {
-  document.querySelector(".form-card").classList.add("hidden");
-  document.querySelector(".result-card").classList.remove("hidden");
+// ===============================
+// HATI BERTERBANGAN
+// ===============================
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart-bg";
+  heart.innerText = "❤️";
 
-  document.getElementById("hasilNama").innerText = params.get("nama");
-  document.getElementById("hasilPesan1").innerText = params.get("p1");
-  document.getElementById("hasilPesan2").innerText = params.get("p2");
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = 14 + Math.random() * 20 + "px";
+  heart.style.animationDuration = 5 + Math.random() * 5 + "s";
 
-  playMusic();
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 10000);
 }
+setInterval(createHeart, 400);
 
-// PEMBUAT LINK
+// ===============================
+// PEMBUAT: BUAT LINK
+// ===============================
 function buatPernyataan() {
-  const nama = encodeURIComponent(
-    document.getElementById("nama").value || "Kamu"
-  );
-  const p1 = encodeURIComponent(document.getElementById("pesan1").value);
-  const p2 = encodeURIComponent(document.getElementById("pesan2").value);
+  const nama = document.getElementById("nama").value.trim();
+  const pesan1 = document.getElementById("pesan1").value.trim();
+  const pesan2 = document.getElementById("pesan2").value.trim();
 
-  const url = `${window.location.origin}${window.location.pathname}?nama=${nama}&p1=${p1}&p2=${p2}`;
+  if (!nama || !pesan1 || !pesan2) {
+    alert("Isi semuanya dulu ya 💖");
+    return;
+  }
 
-  document.getElementById("shareLink").value = url;
+  const params = new URLSearchParams({
+    n: nama,
+    p1: pesan1,
+    p2: pesan2,
+  });
 
-  document.querySelector(".form-card").classList.add("hidden");
-  document.querySelector(".result-card").classList.remove("hidden");
+  const link = `${location.origin}${location.pathname}?${params.toString()}`;
+  document.getElementById("shareLink").value = link;
 
-  document.getElementById("hasilNama").innerText = decodeURIComponent(nama);
-  document.getElementById("hasilPesan1").innerText = decodeURIComponent(p1);
-  document.getElementById("hasilPesan2").innerText = decodeURIComponent(p2);
-
-  playMusic();
+  // Tampilkan hasil untuk pembuat (tanpa musik)
+  tampilkanPesan(nama, pesan1, pesan2);
 }
 
-// MUSIK
-function playMusic() {
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.5;
+// ===============================
+// TAMPILKAN PESAN
+// ===============================
+function tampilkanPesan(nama, pesan1, pesan2) {
+  document.getElementById("hasilNama").textContent = nama;
+  document.getElementById("hasilPesan1").textContent = pesan1;
+  document.getElementById("hasilPesan2").textContent = pesan2;
+
+  document.getElementById("formCard").classList.add("hidden");
+  document.getElementById("openCard").classList.add("hidden");
+  document.getElementById("resultCard").classList.remove("hidden");
+}
+
+// ===============================
+// PENERIMA: BUKA PESAN (MUSIK MULAI)
+// ===============================
+function bukaPesan() {
+  music.volume = 0.6;
   music.play().catch(() => {});
+
+  const params = new URLSearchParams(location.search);
+  tampilkanPesan(params.get("n"), params.get("p1"), params.get("p2"));
 }
 
+// ===============================
 // TERIMA CINTA
+// ===============================
 function terimaCinta() {
   document.getElementById("response").classList.remove("hidden");
 }
 
+// ===============================
 // COPY LINK
+// ===============================
 function copyLink() {
-  const link = document.getElementById("shareLink");
-  link.select();
+  const input = document.getElementById("shareLink");
+  input.select();
   document.execCommand("copy");
-  alert("Link berhasil disalin 💕");
+  alert("Link berhasil disalin 💌");
 }
 
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart-bg");
-  heart.innerHTML = "❤️";
+// ===============================
+// AUTO MODE PENERIMA
+// ===============================
+window.onload = () => {
+  const params = new URLSearchParams(location.search);
 
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
-  heart.style.fontSize = 14 + Math.random() * 20 + "px";
-
-  document.querySelector(".hearts-container").appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 8000);
-}
-
-// buat hati terus muncul
-setInterval(createHeart, 500);
+  if (params.has("n")) {
+    // MODE PENERIMA
+    document.getElementById("formCard").classList.add("hidden");
+    document.getElementById("openCard").classList.remove("hidden");
+  }
+};
