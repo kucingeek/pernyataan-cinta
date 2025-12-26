@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <audio id="bgMusic" src="Music_Romantic.mp3" loop></audio>
+    <!-- AUDIO -->
+    <audio id="bgMusic" loop>
+      <source src="Music_Romantic.mp3" type="audio/mpeg" />
+    </audio>
 
+    <!-- BACKGROUND HATI -->
     <div class="hearts-container"></div>
 
     <!-- FORM PEMBUAT -->
-    <div class="card form-card">
+    <div class="card form-card" id="formCard">
       <h1>💌 Buat Pernyataan Cinta</h1>
 
       <input type="text" id="nama" placeholder="Nama dia..." />
@@ -22,8 +26,15 @@
       <button onclick="buatPernyataan()">Buat & Generate Link 💖</button>
     </div>
 
-    <!-- HASIL / MODE BACA -->
-    <div class="card result-card hidden">
+    <!-- LAYAR BUKA PESAN (PENERIMA) -->
+    <div class="card hidden" id="openCard">
+      <h1>💌 Ada Pesan Cinta</h1>
+      <p>Klik tombol di bawah untuk membukanya…</p>
+      <button onclick="bukaPesan()">💖 BUKA PESAN</button>
+    </div>
+
+    <!-- ISI PESAN -->
+    <div class="card result-card hidden" id="resultCard">
       <div class="emoji">🐻💗</div>
       <h1>Hai <span id="hasilNama"></span>!</h1>
 
